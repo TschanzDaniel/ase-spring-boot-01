@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-public class JpaApplication {
+public class MongoDbApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JpaApplication.class, args);
+		SpringApplication.run(MongoDbApplication.class, args);
 	}
 }
