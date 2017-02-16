@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "edu.spring.profiles.config.DataSourceProperties",
+      "name": "spring.datasource",
+      "type": "edu.spring.profiles.config.DataSourceProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "edu.spring.profiles.config.DataSourceProperties",
+      "name": "spring.datasource.driver-class-name",
+      "type": "java.lang.String"
+    }
+  ]
+}
