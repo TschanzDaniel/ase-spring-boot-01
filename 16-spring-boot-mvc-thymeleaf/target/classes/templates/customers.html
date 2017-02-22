@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<h1>Customers</h1>
+
+	<p th:utext="#{home.welcome}">Welcome!</p>
+	<p>
+		Your locale is: <span th:text="${#locale.country}">US</span>.
+	</p>
+
+	<p>
+		Today is: <span th:text="${today}">17 February 2017</span>
+	</p>
+	<ul>
+		<li th:each="c:${customers}"><span
+			th:text="${c.firstname} + ' ' + ${c.lastname}"></span></li>
+
+	</ul>
+
+	<h1>Create customer</h1>
+	<form th:action="${createLink.href}" method="post">
+		<input type="text" name="firstname" /> <input type="text"
+			name="lastname" /> <input type="submit" />
+	</form>
+	
+</body>
+</html>
