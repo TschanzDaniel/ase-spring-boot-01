@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Spring Boot JPA Query Example
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Matthias
+Implementation-Vendor-Id: edu.spring.samples
+Build-Jdk: 1.8.0_45
+Implementation-URL: http://projects.spring.io/spring-boot/01-spring-bo
+ ot/22-spring-boot-jpa-queries/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
