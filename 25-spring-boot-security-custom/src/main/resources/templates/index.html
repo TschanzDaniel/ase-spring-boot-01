@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/main">
+<head>
+<title>Security Demo - Home Page</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<h2>Home Page (index.html)</h2>
+		<br></br>
+		<p>
+			Role anonymous: <a href="http://localhost:8080/guest/guest.html">http://localhost:8080/guest/guest.html</a>
+			from /static folder
+		</p>
+		<p>
+			Role admin: <a href="http://localhost:8080/admin/admin.html">http://localhost:8080/admin/admin.html</a>
+			from /static folder
+		</p>
+		<br></br>
+		<p>
+			Role anonymous: <a href="http://localhost:8080/home">http://localhost:8080/home</a>
+		</p>
+		<p>
+			Role user: <a href="http://localhost:8080/posts/">http://localhost:8080/posts/</a>
+		</p>
+		<p>
+			Role admin: <a href="http://localhost:8080/admin/posts/create">http://localhost:8080/admin/posts/create</a>
+		</p>
+		<p>
+			Role admin: <a href="http://localhost:8080/posts/add">http://localhost:8080/posts/add</a>
+		</p>
+		<br></br>
+
+		<p>Also open access to /css, /js, /images, /webjars, 
+			/**/favicon.ico, /error</p>
+		<br></br>
+	</div>
+
+</body>
+</html>
