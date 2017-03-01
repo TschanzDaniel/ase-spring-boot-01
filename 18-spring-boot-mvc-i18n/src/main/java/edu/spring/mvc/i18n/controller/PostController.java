@@ -9,6 +9,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +21,10 @@ import org.springframework.web.servlet.LocaleResolver;
 public class PostController {
 	
 	@Autowired
-	LocaleResolver localeResolver;
+	private LocaleResolver localeResolver;
+
+	@Autowired
+	private MessageSource messageSource;
 
 	@RequestMapping("/")
 	public ModelAndView list(HttpServletRequest request){
@@ -29,12 +33,15 @@ public class PostController {
     	Calendar cal = Calendar.getInstance(); 
     	Locale locale=localeResolver.resolveLocale(request);
     	
-    	
+    	String welcome = messageSource.getMessage(
+    		       "welcome.message", 
+    		       new Object[]{"Felix Muster"}, 
+    		       locale);
      	
     	return new ModelAndView("views/list")
-    	.addObject("locale", locale)		
-		.addObject("today", dateFormat.format(cal.getTime()));
-
+    	    .addObject("locale", locale)	
+    	    .addObject("welcome", welcome)
+		    .addObject("today", dateFormat.format(cal.getTime()));
 	}
 
 }

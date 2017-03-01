@@ -27,10 +27,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
@@ -63,6 +59,15 @@
 		<module>13-spring-boot-jpa-liquibase</module>
 		<module>14-spring-boot-jpa-profiles</module>
 		<module>15-spring-boot-mongodb</module>
+		<module>16-spring-boot-mvc-thymeleaf</module>
+		<module>17-spring-boot-mvc-static</module>
+		<module>18-spring-boot-mvc-i18n</module>
+		<module>19-spring-boot-mvc-error</module>
+		<module>20-spring-boot-mvc-exception</module>
+		<module>21-spring-boot-jpa</module>
+		<module>22-spring-boot-jpa-queries</module>
+		<module>23-spring-boot-security-basic</module>
+		<module>25-spring-boot-security-custom</module>
 	</modules>
 	<repositories>
 		<repository>

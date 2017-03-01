@@ -9,7 +9,7 @@ import edu.spring.mvc.thymeleaf.model.Customer;
 import edu.spring.mvc.thymeleaf.repository.CustomerRepository;
 
 /**
- * Created by trainer on 10.03.2016.
+ * Database Bootstrap
  */
 public class DatabaseBootstrap implements InitializingBean {
 
@@ -20,12 +20,12 @@ public class DatabaseBootstrap implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (repository.findByFirstnameAndLastname("Christopher", "Janietz") == null) {
+        if (repository.findByFirstnameAndLastname("Felix", "Muster") == null) {
             Customer customer = new Customer();
-            customer.setFirstname("Christopher");
-            customer.setLastname("Janietz");
+            customer.setFirstname("Felix");
+            customer.setLastname("Muster");
             repository.save(customer);
-            log.info("Christopher Janietz created");
+            log.info("Felix Muster created");
         }
         log.info("Bootstrap finished");
 

@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * Samples for @RequestMapping, @Pathvariable and @RequestParam
+ */
 @Controller
 @RequestMapping("/home")
 public class HomeController {

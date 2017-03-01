@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import edu.spring.mvc.thymeleaf.bootstrap.DatabaseBootstrap;
 
 /**
- * Created by trainer on 10.03.2016.
+ * Dev Configuration for Database Bootstrap
  */
 @Configuration
 @Profile("dev")
