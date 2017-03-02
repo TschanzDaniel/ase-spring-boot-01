@@ -52,7 +52,7 @@
 	</build>
 
 	<modules>
-		<module>starter-project</module>
+		
 		<module>10-spring-boot-starter</module>
 		<module>11-spring-boot-rest</module>
 		<module>12-spring-boot-jpa-flyway</module>
@@ -63,13 +63,15 @@
 		<module>17-spring-boot-mvc-static</module>
 		<module>18-spring-boot-mvc-i18n</module>
 		<module>19-spring-boot-mvc-error</module>
-		<module>20-spring-boot-mvc-exception</module>
-		<module>21-spring-boot-jpa</module>
+		
+		
 		<module>22-spring-boot-jpa-queries</module>
-		<module>23-spring-boot-security-basic</module>
+		
 		<module>25-spring-boot-security-custom</module>
 		<module>26-spring-boot-security-userdetails</module>
 		<module>27-spring-boot-security-login-registration</module>
+		<module>23-spring-boot-mvc-jpa</module>
+		<module>24-spring-boot-security-basic</module>
 	</modules>
 	<repositories>
 		<repository>

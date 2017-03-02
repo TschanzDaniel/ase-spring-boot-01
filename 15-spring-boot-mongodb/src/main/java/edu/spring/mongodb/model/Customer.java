@@ -18,6 +18,9 @@ public class Customer {
 	@Indexed
 	private String lastname;
 
+	public Customer() {
+		
+	}
 	@PersistenceConstructor
 	public Customer( String firstname, String lastname) {
 		this.firstname = firstname;
