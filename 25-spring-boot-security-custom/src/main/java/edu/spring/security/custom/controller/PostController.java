@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PostController {
 	
-	
 	@RequestMapping("/posts/")
 	public String list(){
 		return "list posts...";
@@ -36,7 +35,5 @@ public class PostController {
 		String userName = principal.getName();
 		return userName + " wants to add posts...";
 	}
-	
 
-	
 }
