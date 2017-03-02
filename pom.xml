@@ -68,6 +68,8 @@
 		<module>22-spring-boot-jpa-queries</module>
 		<module>23-spring-boot-security-basic</module>
 		<module>25-spring-boot-security-custom</module>
+		<module>26-spring-boot-security-userdetails</module>
+		<module>27-spring-boot-security-login-registration</module>
 	</modules>
 	<repositories>
 		<repository>
