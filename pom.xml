@@ -72,6 +72,12 @@
 		<module>27-spring-boot-security-login-registration</module>
 		<module>23-spring-boot-mvc-jpa</module>
 		<module>24-spring-boot-security-basic</module>
+		<module>30-spring-boot-rest-basic</module>
+		
+		<module>31-spring-boot-rest-hypermedia</module>
+		<module>32-spring-boot-rest-hateoas</module>
+		<module>33-spring-boot-rest-security-basic</module>
+		<module>34-spring-boot-rest-security-stateless</module>
 	</modules>
 	<repositories>
 		<repository>

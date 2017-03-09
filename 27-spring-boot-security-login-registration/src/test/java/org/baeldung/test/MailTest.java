@@ -9,7 +9,6 @@ import javax.mail.internet.MimeMessage;
 import org.baeldung.Application;
 import org.baeldung.persistence.dao.UserRepository;
 import org.baeldung.persistence.model.User;
-import org.baeldung.registration.OnRegistrationCompleteEvent;
 import org.baeldung.service.IUserService;
 import org.baeldung.spring.TestDbConfig;
 import org.baeldung.spring.TestIntegrationConfig;
@@ -83,7 +82,8 @@ public class MailTest {
     	
     }
     
-    private final SimpleMailMessage constructEmailMessage(final User user, final String token) {
+    @SuppressWarnings("unused")
+	private final SimpleMailMessage constructEmailMessage(final User user, final String token) {
         final String recipientAddress = user.getEmail();
         final String subject = "Registration Confirmation";
         final String serverPort = env.getProperty("server.port");
