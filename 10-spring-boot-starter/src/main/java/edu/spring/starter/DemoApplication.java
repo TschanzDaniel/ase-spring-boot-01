@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Hello World Example
- *
+ * curl -X GET http://localhost:8080
  */
 @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
 @Controller
