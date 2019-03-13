@@ -13,8 +13,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import edu.spring.rest.security.stateless.auth.LoginParams;
 import edu.spring.rest.security.stateless.domain.Author;
 import edu.spring.rest.security.stateless.domain.Post;
+
 
 
 
@@ -22,20 +24,33 @@ public class SpringRestClient {
 
 
 	public final String REST_SERVICE_URI = "http://localhost:8080/api";
+	private String json = "{\"email\":\"admin@admin.ch\", \"password\":\"admin\"}";
+	private String xAuthToken;
+	private long createId;
 
 	/*
 	 * Add HTTP Authorization header, using Basic-Authentication to send Post-credentials.
 	 */
 	private HttpHeaders getHeaders(){
-		String plainCredentials="user:user";
-		String base64Credentials = new String(Base64.encodeBase64(plainCredentials.getBytes()));
+		// String plainCredentials="user:user";
+		// String plainCredentials="admin@admin.ch:admin";
+		// String base64Credentials = new String(Base64.encodeBase64(plainCredentials.getBytes()));
 
+		
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "Basic " + base64Credentials);
+		headers.add("X-AUTH-TOKEN", xAuthToken);
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		return headers;
 	}
 
+	private void login () {
+		System.out.println("\nTesting login API-----------");
+		RestTemplate restTemplate = new RestTemplate(); 
+		HttpEntity<String> request = new HttpEntity<String>(json);
+        ResponseEntity<String> response = restTemplate.exchange(REST_SERVICE_URI+"/login", HttpMethod.POST, request, String.class);
+        xAuthToken = response.getHeaders().get("X-AUTH-TOKEN").get(0); 
+		
+	}
 	/*
 	 * Send a GET request to get list of all Posts.
 	 */
@@ -79,7 +94,9 @@ public class SpringRestClient {
 		Author author = createAuthor1();
 		Post post  = createPost(author);
 		HttpEntity<Object> request = new HttpEntity<Object>(post, getHeaders());
-        restTemplate.postForLocation(REST_SERVICE_URI+"/posts/", request, Post.class);
+		ResponseEntity<Post> response = restTemplate.exchange(REST_SERVICE_URI+"/posts/", HttpMethod.POST, request, Post.class);
+		createId = response.getBody().getId();
+		System.out.println(response.getBody());
 	}
 
 	/*
@@ -102,7 +119,7 @@ public class SpringRestClient {
 		System.out.println("\nTesting delete Post API----------");
 		RestTemplate restTemplate = new RestTemplate();
 		HttpEntity<String> request = new HttpEntity<String>(getHeaders());
-		restTemplate.exchange(REST_SERVICE_URI+"/posts/3", HttpMethod.DELETE, request, Post.class);
+		restTemplate.exchange(REST_SERVICE_URI+"/posts/" + createId, HttpMethod.DELETE, request, Post.class);
 	}
 
 	private  Author createAuthor1() {
@@ -132,7 +149,11 @@ public class SpringRestClient {
 	}
 
 	public void run () {
-
+		login();
+		if (xAuthToken == null) {
+			System.out.println("no X-AUTH-TOKEN from login");
+			System.exit (0);
+		}
 		listAllPosts();
 
 		getPost();
@@ -145,6 +166,8 @@ public class SpringRestClient {
 
 		deletePost();
 		listAllPosts();
+		
+		System.out.println("abgeschlossen");
 
 	}
 }

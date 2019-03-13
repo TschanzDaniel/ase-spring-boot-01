@@ -3,13 +3,18 @@ package edu.spring.rest.security.stateless.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import edu.spring.rest.security.stateless.auth.StatelessAuthenticationFilter;
@@ -17,64 +22,74 @@ import edu.spring.rest.security.stateless.auth.StatelessLoginFilter;
 import edu.spring.rest.security.stateless.auth.TokenAuthenticationService;
 
 
+
 @Configuration
 @EnableWebSecurity
+@Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	//private static String REALM="ZHAW";
+    private UserDetailsService userService;
+    private TokenAuthenticationService tokenAuthenticationService;
 
-	private UserDetailsService userService;
-	private TokenAuthenticationService tokenAuthenticationService;
-
-	@Autowired
+    @Autowired
 	public SecurityConfiguration(UserDetailsService userService) {
 		super(true);
 		this.userService = userService;
 		tokenAuthenticationService = new TokenAuthenticationService("secretkey", userService);
 	}
-
-	@Bean
+    
+    @Bean
 	public TokenAuthenticationService tokenAuthenticationService() {
 		return tokenAuthenticationService;
 	}
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
-	@Autowired
-	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
-		//auth.userDetailsService(userDetailsService()).passwordEncoder(new BCryptPasswordEncoder());
-		auth.userDetailsService(userService);
-	}
+        http.csrf().disable();
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+        //h2 database console
+        http.headers().frameOptions().disable();
 
-		http
-		.csrf().disable()
-		//.exceptionHandling().and()
-		//.anonymous().and()
-		//.servletApi().and()
-		//.headers().cacheControl().and()
-		.authorizeRequests()
-		.antMatchers("/api/login").permitAll()
-		.antMatchers("/api/authors/**").hasRole("ADMIN")
-		.antMatchers("/api/posts/**").hasRole("USER")
-		.anyRequest().authenticated();
+        http.exceptionHandling()
+            .and().anonymous()
+            .and().servletApi()
+            .and().headers().cacheControl();
 
-		http.addFilterBefore(
-				new StatelessLoginFilter(
-						"/api/login",
-						tokenAuthenticationService,
-						userService,
-						authenticationManager()),
-				UsernamePasswordAuthenticationFilter.class);
+        http.authorizeRequests()
+        	.antMatchers("/api/login").permitAll()
+        	.antMatchers("/api/authors/**").hasRole("ADMIN")
+        	.antMatchers("/api/posts/**").hasAnyRole("USER", "ADMIN")
+        	//.antMatchers("/api/posts/**").permitAll()
+            .antMatchers(HttpMethod.GET, "/h2-console/**").permitAll();
 
-		http.addFilterBefore(
-				new StatelessAuthenticationFilter(tokenAuthenticationService),
-				UsernamePasswordAuthenticationFilter.class);
-	}
+        http.addFilterBefore(
+                new StatelessLoginFilter("/api/login", tokenAuthenticationService, userService, authenticationManager()),
+                UsernamePasswordAuthenticationFilter.class);
 
+        http.addFilterBefore(
+                new StatelessAuthenticationFilter(tokenAuthenticationService),
+                UsernamePasswordAuthenticationFilter.class);
+    }
 
-	/* To allow Pre-flight [OPTIONS] request from browser */
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    	// auth.userDetailsService(userDetailsService()).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userService);
+    }
+
+    @Override
+    protected UserDetailsService userDetailsService() {
+        return userService;
+    }
+    
+    /* To allow Pre-flight [OPTIONS] request from browser */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
@@ -82,6 +97,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers("/h2-console/**");
 	}
 
-
 }
-

@@ -54,5 +54,6 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
         tokenAuthenticationService.addAuthentication(response, userAuthentication);
 
         SecurityContextHolder.getContext().setAuthentication(userAuthentication);
+        System.out.println("successful authentication");
     }
 }

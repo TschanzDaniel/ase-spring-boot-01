@@ -28,12 +28,13 @@ public final class TokenHandler {
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
+        System.out.println(username);
         return userService.loadUserByUsername(username);
      }
 
     public String createTokenForUser(UserDetails userDetails) {
         Date now = new Date();
-        Date expiration = new Date(now.getTime() + TimeUnit.HOURS.toMillis(1l));
+        Date expiration = new Date(now.getTime() + TimeUnit.HOURS.toMillis(10l));
         return Jwts.builder()
                 .setId(UUID.randomUUID().toString())
                 .setSubject(userDetails.getUsername())

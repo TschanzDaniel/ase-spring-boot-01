@@ -14,8 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	@Override
 	@Autowired
-	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
+	public void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth
 			.inMemoryAuthentication()
 				.withUser("admin")

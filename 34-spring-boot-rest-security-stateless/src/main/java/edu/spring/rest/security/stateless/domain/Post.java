@@ -112,7 +112,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [title=" + title + "]";
+		return "Post [id = " + id + ", title=" + title + "]";
 	}
 	
 }
