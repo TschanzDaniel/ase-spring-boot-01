@@ -6,7 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>19-spring-boot-mvc-error</artifactId>
-  <name>MVC Error Handling</name>
+  <name>19 MVC Error Handling</name>
   	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

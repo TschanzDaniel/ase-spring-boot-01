@@ -5,5 +5,6 @@ import edu.spring.security.userdetails.domain.User;
 public interface UserService {
 
 	public User findByEmail(String email);
-	
+	public User findByName(String email);
+
 }

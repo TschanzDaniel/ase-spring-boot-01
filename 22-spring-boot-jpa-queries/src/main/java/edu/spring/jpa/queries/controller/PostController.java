@@ -14,34 +14,34 @@ import edu.spring.jpa.queries.service.PostService;
 @RestController
 @RequestMapping("/posts")
 public class PostController {
-	
-	private PostService postService;
-	
+
+	private final PostService postService;
+
 	@Autowired
 	public PostController(PostService postService){
 		this.postService = postService;
 	}
-	
+
 	@RequestMapping("/")
 	public Iterable<Post> list(){
 		return postService.list();
 	}
-	
+
 	@RequestMapping("/byAuthor/{first}")
 	public List<Post> byAuthor( @PathVariable(value="first") String first ) {
 		return postService.byAuthor(first);
 	}
-	
+
 	@RequestMapping("/byKeyword/{keyword}")
 	public List<Post> byKeyword( @PathVariable(value="keyword") String keyword ) {
 		return postService.byKeyword(keyword);
 	}
-	
+
 	@RequestMapping("/active")
 	public List<Post> active() {
 		return postService.findActive();
 	}
-	
+
 	@RequestMapping("/slug/{slug}")
 	public Post findPostBySlug(@PathVariable(value="slug") String slug ) {
 		return postService.findBySlug(slug);

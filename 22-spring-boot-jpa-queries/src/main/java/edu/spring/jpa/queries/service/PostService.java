@@ -11,17 +11,17 @@ import edu.spring.jpa.queries.repository.PostRepository;
 @Service
 public class PostService {
 
-	private PostRepository postRepository;
-	
+	private final PostRepository postRepository;
+
 	@Autowired
 	public PostService(PostRepository postRepository){
 		this.postRepository = postRepository;
 	}
-	
+
 	public Iterable<Post> list(){
 		return postRepository.findAll();
 	}
-	
+
 	// CUSTOM QUERIES
 
 	public List<Post> byAuthor(String first){
@@ -39,6 +39,6 @@ public class PostService {
 	public Post findBySlug(String slug) {
 		return postRepository.findPostBySlugNative(slug);
 	}
-	
-	
+
+
 }

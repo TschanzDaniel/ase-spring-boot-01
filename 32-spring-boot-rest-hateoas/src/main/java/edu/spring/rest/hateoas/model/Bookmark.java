@@ -2,10 +2,7 @@ package edu.spring.rest.hateoas.model;
 
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,10 +14,10 @@ public class Bookmark {
     private Account account;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    Bookmark() { // jpa only
+    public Bookmark() { // jpa only
     }
 
     public Bookmark(Account account, String uri, String description) {

@@ -1,1 +1,1 @@
-insert into CUSTOMER (firstname, lastname) values ('Matthias', 'Bachmann');
+insert into CUSTOMER (firstname, lastname) values ('Max', 'Mustermann');

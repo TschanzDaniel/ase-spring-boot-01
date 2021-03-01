@@ -6,10 +6,10 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>30-spring-boot-rest-hypermedia</artifactId>
-  <name>Spring Boot Hyper Media with HAL Browser</name>
-  
+  <name>31 Spring Boot Hyper Media with HAL Browser</name>
+
   	<dependencies>
-	
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -18,11 +18,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
-	    <dependency>
-	        <groupId>org.springframework.data</groupId>
-	        <artifactId>spring-data-rest-hal-browser</artifactId>
-	    </dependency>
-		
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
@@ -32,6 +32,18 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+		<!-- Open API for Automatic Rest Interfaces -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-data-rest</artifactId>
+			<version>1.5.4</version>
+		</dependency>
 	</dependencies>
-  
+
 </project>

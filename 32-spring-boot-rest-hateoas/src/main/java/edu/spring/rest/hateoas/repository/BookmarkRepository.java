@@ -10,4 +10,5 @@ import edu.spring.rest.hateoas.model.Bookmark;
 
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
     Collection<Bookmark> findByAccountUsername(String username);
+    Bookmark findBookmarksById(Long id);
 }

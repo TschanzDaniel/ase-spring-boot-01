@@ -1,8 +1,5 @@
 package edu.spring.mvc.thymeleaf.controller;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -15,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.spring.mvc.thymeleaf.model.Customer;
 import edu.spring.mvc.thymeleaf.repository.CustomerRepository;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 /**
  * Customer Controller for Spring MVC
  */
@@ -26,9 +26,9 @@ public class CustomerController {
 
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
     public ModelAndView getCustomers() {
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");     
-    	Calendar cal = Calendar.getInstance(); 
-    	
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+    	Calendar cal = Calendar.getInstance();
+
         return new ModelAndView("customers")
         		.addObject("today", dateFormat.format(cal.getTime()))
                 .addObject("customers", repository.findAll())

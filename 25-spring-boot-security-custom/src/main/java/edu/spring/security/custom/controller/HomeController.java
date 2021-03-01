@@ -8,13 +8,13 @@ public class HomeController {
 
 	@RequestMapping(value={"/"})
 	public String home(){
-		return "index";
+		return "home/home";
 	}
-	
+
 	@RequestMapping(value={"/home"})
 	public String home_home(){
 		return "home/home";
 	}
 
-	
+
 }

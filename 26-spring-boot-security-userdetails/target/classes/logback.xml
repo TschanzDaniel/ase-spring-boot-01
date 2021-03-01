@@ -2,5 +2,4 @@
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/base.xml"/>
 	<logger name="org.hibernate.SQL" level="DEBUG"/>
-	<logger name="com.github.dandelion.datatables.thymeleaf.processor.el.TdElProcessor" level="ERROR"/>
 </configuration>

@@ -17,16 +17,17 @@ package edu.spring.rest.hateoas.controller;
  */
 
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.ResourceSupport;
+
 
 import edu.spring.rest.hateoas.model.Bookmark;
+import org.springframework.hateoas.RepresentationModel;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 // tag::code[]
-class BookmarkResource extends ResourceSupport {
+class BookmarkResource extends RepresentationModel {
 
 	private final Bookmark bookmark;
 

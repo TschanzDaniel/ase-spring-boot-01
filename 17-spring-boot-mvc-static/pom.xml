@@ -7,7 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>17-spring-boot-mvc-static</artifactId>
-	<name>Spring Boot Static Web Content</name>
+	<name>17 Spring Boot Static Web Content</name>
 
 	<dependencies>
 		<dependency>

@@ -2,7 +2,7 @@ package edu.spring.rest.hateoas.controller;
 
 
 /*
- 
+
 * Copyright 2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,10 +21,11 @@ package edu.spring.rest.hateoas.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,7 +59,7 @@ class BookmarkRestController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-	Resources<BookmarkResource> readBookmarks(@PathVariable String userId) {
+	CollectionModel<BookmarkResource> readBookmarks(@PathVariable String userId) {
 
 		this.validateUser(userId);
 
@@ -66,7 +67,7 @@ class BookmarkRestController {
 				.findByAccountUsername(userId).stream().map(BookmarkResource::new)
 				.collect(Collectors.toList());
 
-		return new Resources<>(bookmarkResourceList);
+		return new CollectionModel<>(bookmarkResourceList);
 	}
 
 	/**
@@ -85,9 +86,9 @@ class BookmarkRestController {
                 Bookmark bookmark = bookmarkRepository
                         .save(new Bookmark(account, input.uri, input.description));
 
-                Link forOneBookmark = new BookmarkResource(bookmark).getLink("self");
+                Optional<Link> forOneBookmark = new BookmarkResource(bookmark).getLink("self");
 
-                return ResponseEntity.created(URI.create(forOneBookmark.getHref())).build();
+                return ResponseEntity.created(URI.create(forOneBookmark.get().getHref())).build();
             })
             .orElse(ResponseEntity.noContent().build());
 	}
@@ -102,7 +103,8 @@ class BookmarkRestController {
 	BookmarkResource readBookmark(@PathVariable String userId,
                                   @PathVariable Long bookmarkId) {
 		this.validateUser(userId);
-		return new BookmarkResource(this.bookmarkRepository.findOne(bookmarkId));
+		Bookmark bookmark = this.bookmarkRepository.findBookmarksById(bookmarkId);
+		return new BookmarkResource(bookmark);
 	}
 
 	private void validateUser(String userId) {

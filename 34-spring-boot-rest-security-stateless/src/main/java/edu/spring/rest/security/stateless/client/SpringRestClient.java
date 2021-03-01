@@ -24,7 +24,7 @@ public class SpringRestClient {
 
 
 	public final String REST_SERVICE_URI = "http://localhost:8080/api";
-	private String json = "{\"email\":\"admin@admin.ch\", \"password\":\"admin\"}";
+	private final String json = "{\"email\":\"admin@admin.ch\", \"password\":\"admin\"}";
 	private String xAuthToken;
 	private long createId;
 
@@ -36,7 +36,7 @@ public class SpringRestClient {
 		// String plainCredentials="admin@admin.ch:admin";
 		// String base64Credentials = new String(Base64.encodeBase64(plainCredentials.getBytes()));
 
-		
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("X-AUTH-TOKEN", xAuthToken);
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -45,11 +45,11 @@ public class SpringRestClient {
 
 	private void login () {
 		System.out.println("\nTesting login API-----------");
-		RestTemplate restTemplate = new RestTemplate(); 
+		RestTemplate restTemplate = new RestTemplate();
 		HttpEntity<String> request = new HttpEntity<String>(json);
         ResponseEntity<String> response = restTemplate.exchange(REST_SERVICE_URI+"/login", HttpMethod.POST, request, String.class);
-        xAuthToken = response.getHeaders().get("X-AUTH-TOKEN").get(0); 
-		
+        xAuthToken = response.getHeaders().get("X-AUTH-TOKEN").get(0);
+
 	}
 	/*
 	 * Send a GET request to get list of all Posts.
@@ -57,7 +57,7 @@ public class SpringRestClient {
 	@SuppressWarnings("unchecked")
 	private void listAllPosts(){
 		System.out.println("\nTesting listAllPosts API-----------");
-		RestTemplate restTemplate = new RestTemplate(); 
+		RestTemplate restTemplate = new RestTemplate();
 
 		HttpEntity<String> request = new HttpEntity<String>(getHeaders());
 		@SuppressWarnings("rawtypes")
@@ -166,7 +166,7 @@ public class SpringRestClient {
 
 		deletePost();
 		listAllPosts();
-		
+
 		System.out.println("abgeschlossen");
 
 	}

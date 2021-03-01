@@ -6,8 +6,8 @@
 		<artifactId>01-spring-boot</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>21-spring-boot-jpa</artifactId>
-	<name>Spring JPA Example</name>
+	<artifactId>22-spring-boot-jpa</artifactId>
+	<name>22 Spring JPA Example</name>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -16,6 +16,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+		<!-- Open API for Automatic Rest Interfaces -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-data-rest</artifactId>
+			<version>1.5.4</version>
 		</dependency>
 	</dependencies>
 

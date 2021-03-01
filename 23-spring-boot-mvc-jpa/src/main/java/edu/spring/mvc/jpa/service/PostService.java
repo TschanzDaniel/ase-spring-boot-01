@@ -11,13 +11,13 @@ import edu.spring.mvc.jpa.repository.PostRepository;
 @Service
 public class PostService {
 
-	private PostRepository postRepository;
-	
+	private final PostRepository postRepository;
+
 	@Autowired
 	public PostService(PostRepository postRepository){
 		this.postRepository = postRepository;
 	}
-	
+
 	public Post getLatestPost(){
 		return postRepository.findFirstByOrderByPostedOnDesc();
 	}

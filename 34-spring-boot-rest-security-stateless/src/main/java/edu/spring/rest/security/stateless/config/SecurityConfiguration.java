@@ -1,6 +1,7 @@
 package edu.spring.rest.security.stateless.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import edu.spring.rest.security.stateless.auth.StatelessAuthenticationFilter;
@@ -32,12 +34,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private TokenAuthenticationService tokenAuthenticationService;
 
     @Autowired
-	public SecurityConfiguration(UserDetailsService userService) {
+	public SecurityConfiguration(@Qualifier("userServiceImpl") UserDetailsService userService) {
+
 		super(true);
 		this.userService = userService;
 		tokenAuthenticationService = new TokenAuthenticationService("secretkey", userService);
 	}
-    
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return rawPassword.toString().equals(encodedPassword);
+            }
+        };
+    }
+
     @Bean
 	public TokenAuthenticationService tokenAuthenticationService() {
 		return tokenAuthenticationService;
@@ -88,7 +105,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected UserDetailsService userDetailsService() {
         return userService;
     }
-    
+
     /* To allow Pre-flight [OPTIONS] request from browser */
 	@Override
 	public void configure(WebSecurity web) throws Exception {

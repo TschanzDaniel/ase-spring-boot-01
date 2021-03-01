@@ -12,9 +12,9 @@ import edu.spring.rest.security.stateless.repository.PostRepository;
 @Service
 public class PostServiceImpl implements PostService {
 
-	private PostRepository postRepository;
-	private AuthorRepository authorRepository;
-	
+	private final PostRepository postRepository;
+	private final AuthorRepository authorRepository;
+
 	@Autowired
 	public PostServiceImpl(PostRepository postRepository, AuthorRepository authorRepository){
 		this.postRepository = postRepository;
@@ -28,7 +28,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public Post read(long id) {
-		return postRepository.findOne(id);
+		return postRepository.findById(id).get();
 	}
 
 	@Override
@@ -41,12 +41,12 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public void delete(long id) {
-		postRepository.delete(id);
+		postRepository.deleteById(id);
 	}
 
 	@Override
 	public Post update(long id,Post update) {
-		Post post = postRepository.findOne(id);
+		Post post = postRepository.findById(id).get();
 		if( update.getTitle() != null ) {
 			post.setTitle(update.getTitle());
 		}

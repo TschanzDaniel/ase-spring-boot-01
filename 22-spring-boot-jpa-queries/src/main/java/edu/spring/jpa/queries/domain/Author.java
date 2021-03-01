@@ -2,21 +2,22 @@ package edu.spring.jpa.queries.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Author {
-	
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String firstName;
 	private String lastName;
 	private String email;
-	
+
 //	@OneToMany( mappedBy = "author" )
 //	private List<Post> posts;
-//	
+//
 //	public List<Post> getPosts() {
 //		return posts;
 //	}
@@ -26,13 +27,13 @@ public class Author {
 //	}
 
 	@SuppressWarnings("unused")
-	private Author(){}
-	
+	public Author(){}
+
 	public Author(String first, String last){
 		this.setFirstName(first);
 		this.setLastName(last);
 	}
-	
+
 	public Author(String first, String last, String email){
 		this.setFirstName(first);
 		this.setLastName(last);
@@ -67,6 +68,6 @@ public class Author {
 	public String toString() {
 		return "Author [firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
-	
-	
+
+
 }

@@ -15,7 +15,7 @@ import edu.spring.security.userdetails.repository.UserRepository;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository){
 		this.userRepository = userRepository;
@@ -27,10 +27,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
+	public User findByName(String name) {
+		return userRepository.findByFullName(name);
+	}
+
+	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = findByEmail(username);
 		if( user == null ){
-			throw new UsernameNotFoundException(username);
+			user = findByName(username);
+			if( user == null ) {
+				throw new UsernameNotFoundException(username);
+			}
 		}
 		return new UserDetailsImpl(user);
 	}

@@ -1,13 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en"
-	layout:decorator="layouts/main">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorator="layouts/main">>
 <head>
-	<title>The Real Dan Vega - Home Page</title>
+	<title>Home Page</title>
 </head>
 <body>
-		
+
 	<div layout:fragment="content">
-		
+
 		<h2>About Me</h2>
 		<div class="row">
 			<div class="col-md-12">
@@ -15,7 +18,7 @@
 				<p>Nullam sodales neque fringilla molestie facilisis. Morbi nisl neque, malesuada convallis felis vitae, pharetra maximus lorem. Fusce tincidunt sapien pretium leo scelerisque, eget egestas nisi dapibus. Sed ut magna egestas, condimentum ex vel, tempor justo. Duis ut magna et orci tincidunt vestibulum. Suspendisse sed enim nec mi convallis aliquam. Sed id urna ultricies dolor dictum vulputate. Nulla porta auctor sagittis.</p>
 			</div>
 		</div>
-	    
+
 	    <article>
 			<header>
 				<h2 th:text="${post.title}">title</h2>
@@ -32,8 +35,8 @@
 			</footer>
 			<hr/>
 		</article>
-		
+
 	</div>
-		
+
 </body>
 </html>

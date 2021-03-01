@@ -11,20 +11,20 @@ import edu.spring.mvc.jpa.service.PostService;
 
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	private PostService postService;
-	
+	private final PostService postService;
+
 	@Autowired
 	public HomeController(PostService postService){
 		this.postService = postService;
 	}
-	
+
 	@RequestMapping("/")
 	public String home(Model model){
 		model.addAttribute("post", postService.getLatestPost());
 		logger.info(postService.getLatestPost().toString());
 		return "index";
 	}
-	
+
 }

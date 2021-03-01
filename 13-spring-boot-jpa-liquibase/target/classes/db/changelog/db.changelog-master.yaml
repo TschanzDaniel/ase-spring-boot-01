@@ -45,8 +45,8 @@ databaseChangeLog:
             columns:
               - column:
                   name: firstname
-                  value: Matthias
+                  value: Max
               - column:
                   name: lastname
-                  value: Bachmann
+                  value: Mustermann
 

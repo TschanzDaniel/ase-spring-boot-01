@@ -14,7 +14,7 @@ import edu.spring.mvc.jpa.repository.AuthorRepository;
 public class AuthorService {
 
 	private AuthorRepository authorRepository;
-	
+
 	@Autowired
 	public AuthorService(AuthorRepository authorRepository) {
 		super();
@@ -24,9 +24,9 @@ public class AuthorService {
 	public List<Author> list() {
 		return authorRepository.findAllByOrderByLastNameAscFirstNameAsc();
 	}
-	
+
 	public Author findOne(Long id) {
-		return authorRepository.findOne(id);
+		return authorRepository.findById(id).get();
 	}
 
 

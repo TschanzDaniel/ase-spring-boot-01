@@ -2,13 +2,7 @@ package edu.spring.security.userdetails.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -16,29 +10,30 @@ import org.springframework.data.annotation.CreatedDate;
 @Entity
 public class Post {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	
+
 	@Column(columnDefinition = "TEXT")
 	private String body;
-	
+
 	@Column(columnDefinition = "TEXT")
 	private String teaser;
-	
+
 	private String slug;
-	
-	@CreatedDate 
+
+	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date postedOn;
 
 	@ManyToOne
 	private Author author;
-	
+
 	@SuppressWarnings("unused")
-	private Post(){
+	public Post(){
 	}
-	
+
 	public Post(String title){
 		this.setTitle(title);
 	}
@@ -74,7 +69,7 @@ public class Post {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	
+
 	public String getTeaser() {
 		return teaser;
 	}
@@ -95,5 +90,5 @@ public class Post {
 	public String toString() {
 		return "Post [title=" + title + "]";
 	}
-	
+
 }

@@ -14,24 +14,24 @@ import edu.spring.mvc.jpa.service.AuthorService;
 @RequestMapping("/authors")
 public class AuthorController {
 
-	private AuthorService authorService;
+	private final AuthorService authorService;
 
 	@Autowired
 	public AuthorController(AuthorService authorService) {
 		super();
 		this.authorService = authorService;
 	}
-	
+
 	@RequestMapping("/list")
 	public String list(Model model){
 		model.addAttribute("authors", authorService.list());
 		return "author/list";
 	}
-	
+
 	@RequestMapping("/view/{id}")
 	public String view(@PathVariable("id") Long id, Model model){
 		model.addAttribute("author", authorService.findOne(id));
 		return "author/view";
 	}
-	
+
 }

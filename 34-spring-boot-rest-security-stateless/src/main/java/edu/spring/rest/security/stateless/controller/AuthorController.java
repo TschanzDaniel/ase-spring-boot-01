@@ -11,9 +11,9 @@ import edu.spring.rest.security.stateless.repository.AuthorRepository;
 @RestController
 @RequestMapping("/api/authors")
 public class AuthorController {
-	
+
 	AuthorRepository authorRepository;
-	
+
 	@Autowired
 	public AuthorController(AuthorRepository authorRepository){
 		this.authorRepository = authorRepository;
@@ -23,10 +23,10 @@ public class AuthorController {
 	public Iterable<Author> list(){
 		return authorRepository.findAll();
 	}
-	
+
 	@RequestMapping("/{id}")
 	public Author read(@PathVariable(value="id") long id){
-		return authorRepository.findOne(id);
+		return authorRepository.findById(id).get();
 	}
-	
+
 }

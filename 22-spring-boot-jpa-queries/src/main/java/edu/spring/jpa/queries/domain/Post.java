@@ -3,14 +3,7 @@ package edu.spring.jpa.queries.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -20,32 +13,33 @@ import edu.spring.jpa.queries.json.JsonDateSerializer;
 @Entity
 public class Post {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	
+
 	@Column(columnDefinition = "TEXT")
 	private String body;
-	
+
 	@Column(columnDefinition = "TEXT")
 	private String teaser;
-	
+
 	private String slug;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date postedOn;
-	
-	@ElementCollection
+
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> keywords;
-	
+
 	private Boolean active;
 
 	@ManyToOne
 	private Author author;
-	
+
 	@SuppressWarnings("unused")
-	private Post(){}
-	
+	public Post(){}
+
 	public Post(String title){
 		this.setTitle(title);
 	}
@@ -66,7 +60,7 @@ public class Post {
 		this.body = body;
 	}
 
-	@JsonSerialize(using=JsonDateSerializer.class) 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getPostedOn() {
 		return postedOn;
 	}
@@ -82,7 +76,7 @@ public class Post {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	
+
 	public String getTeaser() {
 		return teaser;
 	}
@@ -119,5 +113,5 @@ public class Post {
 	public String toString() {
 		return "Post [title=" + title + "]";
 	}
-	
+
 }

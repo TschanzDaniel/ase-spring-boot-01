@@ -5,7 +5,9 @@ import java.net.ConnectException;
 import org.junit.Rule;
 import org.junit.Test;
 
-import org.springframework.boot.test.rule.OutputCapture;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.system.OutputCaptureRule;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.core.NestedCheckedException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,18 +15,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**
- * Checks initial creation of PUBLIC.DATABASECHANGELOG table 
+ * Checks initial creation of PUBLIC.DATABASECHANGELOG table
  * if the file database.mv already exists, the test will just do nothing
  */
+@ExtendWith(OutputCaptureExtension.class)
 public class SampleLiquibaseApplicationTests {
 
 	@Rule
-	public OutputCapture outputCapture = new OutputCapture();
+	public OutputCaptureRule outputCapture = new OutputCaptureRule();
 
 	@Test
 	public void testDefaultSettings() throws Exception {
 		try {
-			JpaApplication.main(new String[] { "--server.port=0" });
+			JpaLiquibaseApplication.main(new String[] { "--server.port=0" });
 		}
 		catch (IllegalStateException ex) {
 			if (serverNotRunning(ex)) {
@@ -34,7 +37,7 @@ public class SampleLiquibaseApplicationTests {
 		String output = this.outputCapture.toString();
 		if (output.contains("Creating database history table with name: PUBLIC.DATABASECHANGELOG") ) {
 
-			assertThat(output).contains("Successfully acquired change log lock")
+			assertThat(output)
 			.contains("Creating database history "
 					+ "table with name: PUBLIC.DATABASECHANGELOG")
 			.contains("Table customer created")

@@ -17,22 +17,34 @@ package edu.spring.rest.hateoas.exception;
  * limitations under the License.
  */
 
-import org.springframework.hateoas.VndErrors;
+
+import org.springframework.hateoas.mediatype.vnderrors.VndErrors;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 // tag::code[]
 @ControllerAdvice
+@RequestMapping(produces = "application/vnd.error+json")
 class BookmarkControllerAdvice {
 
-	@ResponseBody
 	@ExceptionHandler(UserNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors userNotFoundExceptionHandler(UserNotFoundException ex) {
-		return new VndErrors("error", ex.getMessage());
+	public ResponseEntity<VndErrors> userNotFoundExceptionHandler(final UserNotFoundException e) {
+		return error(e, HttpStatus.NOT_FOUND, e.getMessage());
+	}
+
+	private ResponseEntity<VndErrors> error(
+			final Exception exception, final HttpStatus httpStatus, final String logRef) {
+		final String message =
+				Optional.of(exception.getMessage()).orElse(exception.getClass().getSimpleName());
+		return new ResponseEntity<>(new VndErrors(logRef, message), httpStatus);
+	}
+
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<VndErrors> assertionException(final IllegalArgumentException e) {
+		return error(e, HttpStatus.NOT_FOUND, e.getLocalizedMessage());
 	}
 }
 // end::code[]

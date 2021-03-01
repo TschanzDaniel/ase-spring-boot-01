@@ -6,11 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>32-spring-boot-rest-hateoas</artifactId>
-  <name> Spring Boot Hateoas Beispiel </name>
+  <name>32 Spring Boot Hateoas Beispiel </name>
   <description>https://spring.io/guides/tutorials/bookmarks/#_building_a_hateoas_rest_service</description>
 
  	<dependencies>
-	
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -21,9 +21,9 @@
 		</dependency>
 	    <dependency>
 	        <groupId>org.springframework.data</groupId>
-	        <artifactId>spring-data-rest-hal-browser</artifactId>
+	        <artifactId>spring-data-rest-hal-explorer</artifactId>
 	    </dependency>
-		
+
 		<dependency>
 			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
@@ -33,6 +33,24 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+		<!-- Open API for Automatic Rest Interfaces -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-data-rest</artifactId>
+			<version>1.5.4</version>
+		</dependency>
 	</dependencies>
-  
+
 </project>

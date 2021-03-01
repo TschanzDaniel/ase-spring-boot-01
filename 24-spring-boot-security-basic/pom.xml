@@ -7,7 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>23-spring-boot-security-basic</artifactId>
-	<name>Spring Security Basic</name>
+	<name>24 Spring Security Basic</name>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

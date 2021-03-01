@@ -1,9 +1,6 @@
 package edu.spring.flyway.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Model class checkout
@@ -12,7 +9,7 @@ import javax.persistence.OneToOne;
 public class Checkout {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne

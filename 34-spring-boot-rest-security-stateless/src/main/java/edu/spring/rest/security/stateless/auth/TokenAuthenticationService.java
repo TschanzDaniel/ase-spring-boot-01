@@ -10,12 +10,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-@Service
 public class TokenAuthenticationService {
 
     private static final String AUTH_HEADER_NAME = "X-AUTH-TOKEN";
 
-    private final TokenHandler tokenHandler;
+    private TokenHandler tokenHandler = null;
+
 
     public TokenAuthenticationService(String secret, UserDetailsService userDetailsService) {
         tokenHandler = new TokenHandler(secret, userDetailsService);

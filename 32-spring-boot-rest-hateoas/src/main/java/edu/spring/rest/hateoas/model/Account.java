@@ -2,10 +2,7 @@ package edu.spring.rest.hateoas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +14,7 @@ public class Account {
     private Set<Bookmark> bookmarks = new HashSet<>();
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Set<Bookmark> getBookmarks() {
@@ -45,6 +42,6 @@ public class Account {
         this.password = password;
     }
 
-    Account() { // jpa only
+    public Account() { // jpa only
     }
 }

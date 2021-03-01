@@ -1,7 +1,0 @@
-################### JavaMail Configuration ##########################
-smtp.host=mail.united-portal.com
-smtp.port=25
-smtp.protocol=smtp
-smtp.username=jsp@united-portal.com
-smtp.password=hallovelo
-support.email=m.bachmann@united.ch

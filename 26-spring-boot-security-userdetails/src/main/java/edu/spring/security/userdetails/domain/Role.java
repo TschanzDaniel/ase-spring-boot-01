@@ -3,26 +3,22 @@ package edu.spring.security.userdetails.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table( name = "role" )
 public class Role {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String role;
-	
+
 	@ManyToMany( mappedBy = "roles")
 	private Set<User> users = new HashSet<User>();
-	
-	private Role(){} // 
+
+	public Role(){} //
 
 	public Long getId() {
 		return id;
@@ -52,5 +48,5 @@ public class Role {
 	public String toString() {
 		return "Role [id=" + id + ", role=" + role + "]";
 	}
-	
+
 }

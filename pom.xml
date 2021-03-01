@@ -6,7 +6,7 @@
 	<artifactId>01-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
+	<name>01 Spring Boot Multi Maven Parent Project</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -17,7 +17,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.1.RELEASE</version>
+		<version>2.3.2.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -52,7 +52,7 @@
 	</build>
 
 	<modules>
-		
+
 		<module>10-spring-boot-starter</module>
 		<module>11-spring-boot-rest</module>
 		<module>12-spring-boot-jpa-flyway</module>
@@ -63,17 +63,12 @@
 		<module>17-spring-boot-mvc-static</module>
 		<module>18-spring-boot-mvc-i18n</module>
 		<module>19-spring-boot-mvc-error</module>
-		
-		
 		<module>22-spring-boot-jpa-queries</module>
-		
-		<module>25-spring-boot-security-custom</module>
-		<module>26-spring-boot-security-userdetails</module>
-		<module>27-spring-boot-security-login-registration</module>
 		<module>23-spring-boot-mvc-jpa</module>
 		<module>24-spring-boot-security-basic</module>
+		<module>25-spring-boot-security-custom</module>
+		<module>26-spring-boot-security-userdetails</module>
 		<module>30-spring-boot-rest-basic</module>
-		
 		<module>31-spring-boot-rest-hypermedia</module>
 		<module>32-spring-boot-rest-hateoas</module>
 		<module>33-spring-boot-rest-security-basic</module>

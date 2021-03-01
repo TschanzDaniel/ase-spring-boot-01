@@ -1,1 +1,4 @@
-edu\spring\flyway\JpaApplicationTests.class
+edu/spring/flyway/AbstractTest$1.class
+edu/spring/flyway/CustomerRestControllerTest.class
+edu/spring/flyway/AbstractTest.class
+edu/spring/flyway/JpaFlywayApplicationTests.class
